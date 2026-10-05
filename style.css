@@ -126,3 +126,22 @@ li a:hover {
     }
 
   }
+
+.about-us {
+    border: 2px solid #e5aabd;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 35px;
+    background-color: white;
+}
+
+.about-us h2 {
+    color: #e66b91;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.about-us p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
