@@ -1,379 +1,88 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quattro Bloom - Romantic Opening</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-body, html {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at center, #2b1055 0%, #7597de 50%, #11052C 100%);
-  color: #fff;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* Canvas Latar Belakang Partikel & Bunga */
-#canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
+    <title>Qicazza</title>
 
-/* Pembungkus Utama */
-.container {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Judul Animasi */
-.title-box {
-  margin-bottom: 40px;
-  animation: fadeInDown 1.8s ease-out forwards;
-}
-
-.title-box h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 4rem;
-  color: #ffd700;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 105, 180, 0.4);
-  margin-bottom: 5px;
-}
-
-.title-box p {
-  font-family: 'Cinzel', serif;
-  font-size: 1.1rem;
-  letter-spacing: 3px;
-  color: #e0e0e0;
-  text-transform: uppercase;
-  opacity: 0.9;
-}
-
-/* Amplop Melayang */
-.envelope-wrapper {
-  position: relative;
-  width: 280px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
-              0 0 20px rgba(255, 182, 193, 0.3);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: float 4s ease-in-out infinite;
-}
-
-.envelope-wrapper:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5),
-              0 0 35px rgba(255, 182, 193, 0.6);
-  border-color: rgba(255, 215, 0, 0.6);
-}
-
-/* Ikon Segel Lilin Bunga */
-.wax-seal {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(255, 65, 108, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
-}
-
-.envelope-wrapper:hover .wax-seal {
-  transform: rotate(15deg) scale(1.1);
-}
-
-.wax-seal svg {
-  width: 38px;
-  height: 38px;
-  fill: #fff;
-}
-
-/* Petunjuk Klik */
-.tap-hint {
-  font-size: 0.95rem;
-  font-weight: 300;
-  letter-spacing: 1.5px;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-/* Sub-teks Bawah */
-.footer-note {
-  position: absolute;
-  bottom: 30px;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: 'Cinzel', serif;
-}
-
-/* Modal / Pop-up Pesan Rahasia */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 5, 20, 0.85);
-  backdrop-filter: blur(12px);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
-
-.modal-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  color: #2b1055;
-  padding: 40px 30px;
-  border-radius: 20px;
-  max-width: 420px;
-  width: 85%;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  transform: scale(0.8) translateY(30px);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.modal-overlay.active .card {
-  transform: scale(1) translateY(0);
-}
-
-.card h2 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 3rem;
-  color: #d4145a;
-  margin-bottom: 15px;
-}
-
-.card p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #4a4a4a;
-  margin-bottom: 25px;
-}
-
-.btn-close {
-  background: linear-gradient(135deg, #d4145a, #fbb03b);
-  color: #fff;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(212, 20, 90, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-close:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(212, 20, 90, 0.6);
-}
-
-/* Keyframe Animasi */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(1deg);
-  }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsif Mobile */
-@media (max-width: 480px) {
-  .title-box h1 {
-    font-size: 3rem;
-  }
-  .title-box p {
-    font-size: 0.9rem;
-  }
-  .envelope-wrapper {
-    width: 240px;
-    height: 170px;
-  }
-  .wax-seal {
-    width: 60px;
-    height: 60px;
-  }
-  .wax-seal svg {
-    width: 30px;
-    height: 30px;
-  }
-}
-    </style>
+    <!-- Menghubungkan HTML dengan CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  
-  <!--Canvas Latar belakang --!>
-  <canvas id="canvas"></canvas>
-  <!-- Konten Tampilan Awal -->
-  <div class="container">
-    <div class="tittle-box">
-      <h1> Qicazza </h1>
-      <p>A Special Gift For You</p>
+
+    <div class="container">
+
+        <!-- JUDUL / NAMA KELOMPOK -->
+        <h1>Qicazza</h1>
+
+
+        <!-- NAVIGASI -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Beranda</a>
+                </li>
+
+                <li>
+                    <a href="desain.html">Desain</a>
+                </li>
+
+                <li>
+                    <a href="produk.html">Produk</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <!-- LOGO -->
+        <div class="logo">
+            <img src="gambar/logo.jpg" alt="Logo Qicazza">
+        </div>
+
+
+        <!-- FILOSOFI LOGO -->
+        <div class="filosofi">
+
+            <h2>Filosofi Logo</h2>
+
+            <!--
+            Logo Qicazza memiliki makna berupa kasih sayang kepada setiap insan yang membacanya dengan warna merah muda.
+            -->
+
+            <p>
+                
+            </p>
+
+        </div>
+
+
+        <!-- CANVA -->
+        <div class="canva">
+
+            <h2>Desain</h2>
+
+            <iframe
+                src="https://www.canva.com/design/DAHXG-x8dxM/view"
+                width="100%"
+                height="600"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+
+            <br>
+
+            <a
+                href="https://canva.link/qg0nluf7zte9cm1"
+                target="_blank">
+                Buka desain di Canva
+            </a>
+
+        </div>
+
     </div>
 
-    <div class="envelope-wrapper" id="envelope">
-  <div class="wax-seal">
-    <!-- SVG Ikon Bunga -->
-    <svg viewBox="0 0 24 24">
-      <path d="M12,2A3,3 0 0,0 9,5C9,6.08 9.58,7.03 10.44,7.56C9.13,7.24 7.66,7.5 6.58,8.58C5.21,9.95 5.21,12.16 6.58,13.53C7.66,14.61 9.13,14.87 10.44,14.55C9.58,15.08 9,16.03 9,17.11A3,3 0 0,0 12,20.11A3,3 0 0,0 15,17.11C15,16.03 14.42,15.08 13.56,14.55C14.87,14.87 16.34,14.61 17.42,13.53C18.79,12.16 18.79,9.95 17.42,8.58C16.34,7.5 14.87,7.24 13.56,7.56C14.42,7.03 15,6.08 15,5A3,3 0 0,0 12,2Z" />
-    </svg>
-  </div>
-  <div class="tap-hint">Buka Amplop</div>
-</div>
-
-<div class="footer-note">Klik untuk membuka kejutan
-</div>
-
-<!-- Pop-up Pesan -->
-  <div class="modal-overlay" id="modal">
-    <div class="card">
-      <h2>Blooming Love</h2>
-      <p>Sama seperti bunga yang bermekaran di musim yang tepat, keindahan akan selalu menemukan jalannya kepada mereka yang bersabar.</p>
-      <button class="btn-close" id="btnClose">Tutup & Nikmati</button>
-    </div>
-  </div>
-
-  <script>
-    // System Partikel Cahaya & Kelopak Bunga (Canvas Background)
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
-    let width, height;
-    let particles = [];
-
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height + height;
-        this.size = Math.random() * 4 + 1;
-        this.speedY = Math.random() * 1.5 + 0.5;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.opacity = Math.random() * 0.7 + 0.3;
-        this.color = Math.random() > 0.5 ? '#ffb6c1' : '#ffd700';
-        this.angle = Math.random() * Math.PI * 2;
-        this.spin = Math.random() * 0.02 - 0.01;
-      }
-
-      update() {
-        this.y -= this.speedY;
-        this.x += this.speedX + Math.sin(this.angle) * 0.5;
-        this.angle += this.spin;
-
-        if (this.y < -10) {
-          this.reset();
-          this.y = height + 10;
-        }
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = this.color;
-        
-        // Menggambar bentuk kelopak/partikel kecil
-        ctx.beginPath();
-        ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    // Inisialisasi 80 Partikel
-    for (let i = 0; i < 80; i++) {
-      particles.push(new Particle());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // Interaksi Tombol Buka Amplop & Pop-up Modal
-    const envelope = document.getElementById('envelope');
-    const modal = document.getElementById('modal');
-    const btnClose = document.getElementById('btnClose');
-
-    envelope.addEventListener('click', () => {
-      modal.classList.add('active');
-    });
-
-    btnClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-  </script>
-</body>
+</body>0
 </html>
