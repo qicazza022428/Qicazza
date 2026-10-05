@@ -1,0 +1,121 @@
+ {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff7fa;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+h1 {
+    text-align: center;
+    color: #e66b91;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 16px;
+    text-align: center;
+}
+
+li {
+    display: inline;
+    padding: 16px;
+}
+
+li a {
+    text-decoration: none;
+    color: #7d5362;
+    font-weight: bold;
+}
+
+li a:hover {
+    color: #e66b91;
+}
+
+.logo {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.filosofi {
+    border: 2px solid #e5aabd;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 35px;
+    background-color: white;
+}
+
+.filosofi h2 {
+    color: #e66b91;
+    margin-bottom: 15px;
+}
+
+.filosofi p {
+    min-height: 80px;
+}
+
+.canva {
+    margin-top: 30px;
+}
+
+.canva h2 {
+    color: #e66b91;
+    margin-bottom: 15px;
+}
+
+.canva iframe {
+    border: none;
+    border-radius: 10px;
+}
+
+.canva a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background-color: #e66b91;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.canva a:hover {
+    background-color: #d9577e;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
+    li {
+        padding: 8px;
+    }
+
+    .filosofi {
+        padding: 18px;
+    }
+
+  }
